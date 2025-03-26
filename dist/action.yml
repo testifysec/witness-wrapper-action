@@ -73,7 +73,7 @@ inputs:
   
   # Signer settings - Sigstore
   enable-sigstore:
-    description: "Use Sigstore for attestation"
+    description: 'Use Sigstore for attestation'
     required: false
     default: "true"
   fulcio:
