@@ -34198,12 +34198,16 @@ const core = __nccwpck_require__(7484);
 const fs = __nccwpck_require__(9896);
 const path = __nccwpck_require__(6928);
 const yaml = __nccwpck_require__(4281);
+const { randomUUID } = __nccwpck_require__(6982);
 
 const { downloadAndSetupWitness } = __nccwpck_require__(4581);
 const getWitnessOptions = __nccwpck_require__(883);
 const { runActionWithWitness, runDirectCommandWithWitness } = __nccwpck_require__(1229);
 const { handleGitOIDs } = __nccwpck_require__(4669);
 const { downloadAndSetupAction, downloadActionWithWitness, cleanUpDirectory } = __nccwpck_require__(9126);
+const { getActionYamlPath } = __nccwpck_require__(4918);
+const { getEnvKey } = __nccwpck_require__(2823);
+const { applyDefaultsFromActionYml, checkRequiredInput } = __nccwpck_require__(7748);
 
 /**
  * Main action runner class
@@ -34461,9 +34465,6 @@ class WitnessActionRunner {
    * @returns {Object} Environment variables for the wrapped action
    */
   getWrappedActionEnv(actionDir) {
-    const { getActionYamlPath } = __nccwpck_require__(4918);
-    const { getEnvKey } = __nccwpck_require__(2823);
-    const { applyDefaultsFromActionYml, checkRequiredInput } = __nccwpck_require__(7748);
     
     // Start with a copy of the current environment
     const newEnv = { ...process.env };
@@ -34576,7 +34577,6 @@ class WitnessActionRunner {
    * @returns {Set<string>} Set of parameter names to filter out
    */
   _getWitnessParameters() {
-    const path = __nccwpck_require__(6928);
     const witnessParams = new Set();
     
     try {
